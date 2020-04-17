@@ -1,0 +1,17 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "free space where people can write articles and thoughts ",
+  "main": "index.js",
+  "repository": "https://github.com/anis-meliti/blog.git",
+  "author": "Anis Melliti <ansmeliti@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  },
+  "scripts": {
+    "server": "cd backend && yarn start",
+    "client": "cd client && yarn start",
+    "start": "concurrently \" yarn run server \" \"yarn run client \""
+  }
+}

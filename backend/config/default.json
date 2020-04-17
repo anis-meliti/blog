@@ -1,4 +1,4 @@
 {
-  "mongoUri": "mongodb+srv://ansmeliti:JpBxuLBWUNCuCXkn@cluster0-ugpxq.mongodb.net/test?retryWrites=true&w=majority",
+  "mongoUri": "mongodb+srv://ansmeliti:JpBxuLBWUNCuCXkn@cluster0-ugpxq.mongodb.net/Blog?retryWrites=true&w=majority",
   "secretOrKey": "MySecret"
 }

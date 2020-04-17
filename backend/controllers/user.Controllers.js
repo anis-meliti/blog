@@ -8,7 +8,8 @@ const userController = {
   register: async (req, res) => {
     const { email, name, password, avatar, role } = req.body;
     try {
-      const searchRes = User.findOne({ email });
+      const searchRes = await User.findOne({ email });
+      console.log('searchRes', searchRes);
       if (searchRes)
         return res.status(400).json({ errors: 'email already token' });
       const newUser = new User({

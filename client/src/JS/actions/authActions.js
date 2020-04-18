@@ -5,12 +5,15 @@ import {
   REGISTER_FAIL,
 } from '../constants/actions-types';
 
-export const Register = (userCred) => async (dispatch) => {
+export const register = (userCred) => async (dispatch) => {
   dispatch({
     type: REGISTER_USER,
   });
   try {
-    const registerRes = await axios.post('/user/register', userCred);
+    const registerRes = await axios.post('/user/register', {
+      ...userCred,
+      role: 'user',
+    });
     dispatch({
       type: REGISTER_SUCCESS,
       payload: registerRes.data,

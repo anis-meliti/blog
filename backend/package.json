@@ -20,6 +20,7 @@
     "mongoose": "^5.9.9"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node server"
+    "dev": "nodemon --exec babel-node server",
+    "start": "node --exec babel-node server"
   }
 }

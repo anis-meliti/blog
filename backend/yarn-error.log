@@ -1,0 +1,43 @@
+Arguments: 
+  /usr/bin/node /usr/bin/yarn add -D @babael/core @babel/node @babel/cli @babel/preset-env
+
+PATH: 
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/anis/go/bin
+
+Yarn version: 
+  1.22.0
+
+Node version: 
+  13.13.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@babael%2fcore: Not found
+      at Request.params.callback [as _callback] (/usr/lib/node_modules/yarn/lib/cli.js:66975:18)
+      at Request.self.callback (/usr/lib/node_modules/yarn/lib/cli.js:140727:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:141699:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:141621:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (_stream_readable.js:1201:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
+
+npm manifest: 
+  {
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "backend server for the blog project",
+    "main": "server.js",
+    "author": "Anis Mell",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

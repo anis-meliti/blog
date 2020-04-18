@@ -5,7 +5,7 @@ import {
   REGISTER_FAIL,
 } from '../constants/actions-types';
 
-export const Register = (userCred) => async (dispatch) => {
+export const register = (userCred) => async (dispatch) => {
   dispatch({
     type: REGISTER_USER,
   });

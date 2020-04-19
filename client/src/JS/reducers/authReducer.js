@@ -2,6 +2,9 @@ import {
   REGISTER_USER,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  LOGIN_USER,
+  LOGIN_FAIL,
+  LOGIN_SUCCESS,
 } from '../constants/actions-types';
 
 const initialState = {
@@ -26,6 +29,23 @@ const authReducer = (state = initialState, { type, payload }) => {
         ...state,
         isLoading: false,
         errors: payload,
+      };
+    case LOGIN_USER:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case LOGIN_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        errors: payload,
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        token: payload,
       };
     default:
       return state;

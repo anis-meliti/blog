@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
-import { Container, Col, Row, Form, Card, Input, Button } from 'reactstrap';
+import { PropTypes } from 'prop-types';
+import {
+  Container,
+  Col,
+  Row,
+  Form,
+  Card,
+  Input,
+  Button,
+  Alert,
+} from 'reactstrap';
 import { Link } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './Signin.css';
 import LoadingSpinner from '../LoadingPage/LoadingSpinner';
+import { logIn } from '../../JS/actions/authActions';
 
 const SignIn = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [cred, setCred] = useState({
-    login: '',
+    email: '',
     password: '',
   });
 
@@ -18,13 +29,21 @@ const SignIn = () => {
       ...cred,
       [e.target.name]: e.target.value,
     });
+  const [verif, setVerif] = useState(false);
+
   const addUser = () => {
-    const { login, password } = cred;
-    if (!login.length) return alert('Required field!');
-    if (password.length < 6) return alert('password min length is 6 char');
+    const { email, password } = cred;
+    if (!email || !password) {
+      return setVerif(true);
+    } else {
+      setVerif(false);
+      dispatch(logIn(cred));
+    }
   };
+
+  const isLoading = useSelector((state) => state.authReducer.isLoading);
   return (
-    <LoadingSpinner isLoading={true}>
+    <LoadingSpinner isLoading={isLoading}>
       <div className='login-div page-header'>
         <div className='filter' />
         <Container>
@@ -34,12 +53,15 @@ const SignIn = () => {
                 <h3 className='title mx-auto'>Welcome</h3>
                 <p className='text-center'>Login into your account</p>
                 <hr />
+                {verif && (
+                  <Alert color='danger'>You should fill all the fields</Alert>
+                )}
                 <Form className='register-form '>
-                  <label htmlFor='login'>Login</label>
+                  <label htmlFor='email'>Email</label>
                   <Input
-                    placeholder='Login'
-                    type='text'
-                    name='login'
+                    placeholder='Email ...'
+                    type='email'
+                    name='email'
                     onChange={onChangeHandler}
                   />
                   <label htmlFor='login'>Password</label>
@@ -70,5 +92,7 @@ const SignIn = () => {
     </LoadingSpinner>
   );
 };
-
+SignIn.propTypes = {
+  isLoading: PropTypes.bool,
+};
 export default SignIn;

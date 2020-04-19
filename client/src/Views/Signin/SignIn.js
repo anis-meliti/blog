@@ -14,7 +14,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './Signin.css';
-import LoadingSpinner from '../LoadingPage/LoadingSpinner';
+import LoadingSpinner from '../../components/LoadingPage/LoadingSpinner';
 import { logIn, isAuth } from '../../JS/actions/authActions';
 
 const SignIn = () => {

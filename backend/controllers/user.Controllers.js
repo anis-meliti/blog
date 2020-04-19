@@ -57,5 +57,6 @@ const userController = {
       res.status(500).json({ errors: error });
     }
   },
+  getCurrent: (req, res) => res.json(req.user),
 };
 export default userController;

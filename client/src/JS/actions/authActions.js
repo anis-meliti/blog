@@ -6,7 +6,11 @@ import {
   LOGIN_USER,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
+  AUTH_USER,
+  AUTH_FAIL,
+  AUTH_SUCCESS,
 } from '../constants/actions-types';
+import setAuthToken from '../../utils/setAuthToken';
 
 export const register = (userCred) => async (dispatch) => {
   dispatch({
@@ -32,7 +36,7 @@ export const logIn = (userCerd) => async (dispatch) => {
   });
   try {
     const logRes = await axios.post('/user/login', userCerd);
-    localStorage.setItem('token', logIn.data.token);
+    localStorage.setItem('token', logRes.data.token);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: logRes.data,
@@ -40,6 +44,27 @@ export const logIn = (userCerd) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: LOGIN_FAIL,
+      payload: error.response.data.errors,
+    });
+  }
+};
+
+export const isAuth = () => async (dispatch) => {
+  const token = localStorage.getItem('token');
+
+  setAuthToken(token);
+  dispatch({
+    type: AUTH_USER,
+  });
+  try {
+    const authRes = await axios.get('/user/current');
+    dispatch({
+      type: AUTH_SUCCESS,
+      payload: authRes.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: AUTH_FAIL,
       payload: error.response.data.errors,
     });
   }

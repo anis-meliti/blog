@@ -5,10 +5,14 @@ import {
   LOGIN_USER,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
+  AUTH_USER,
+  AUTH_FAIL,
+  AUTH_SUCCESS,
 } from '../constants/actions-types';
 
 const initialState = {
   isLoading: false,
+  isAuth: false,
 };
 
 const authReducer = (state = initialState, { type, payload }) => {
@@ -46,6 +50,24 @@ const authReducer = (state = initialState, { type, payload }) => {
         ...state,
         isLoading: false,
         token: payload,
+      };
+    case AUTH_USER:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case AUTH_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        errors: payload,
+      };
+    case AUTH_SUCCESS:
+      return {
+        ...state,
+        isLaoding: false,
+        isAuth: true,
+        user: payload,
       };
     default:
       return state;

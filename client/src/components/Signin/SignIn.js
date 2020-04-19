@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import {
   Container,
@@ -10,12 +10,12 @@ import {
   Button,
   Alert,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './Signin.css';
 import LoadingSpinner from '../LoadingPage/LoadingSpinner';
-import { logIn } from '../../JS/actions/authActions';
+import { logIn, isAuth } from '../../JS/actions/authActions';
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -40,9 +40,17 @@ const SignIn = () => {
       dispatch(logIn(cred));
     }
   };
-
+  useEffect(() => {
+    localStorage.getItem('token') && dispatch(isAuth());
+  }, []); //eslint-disable-line
   const isLoading = useSelector((state) => state.authReducer.isLoading);
-  return (
+  const isAuthorized = useSelector((state) => state.authReducer.isAuth);
+
+  return isAuthorized ? (
+    <LoadingSpinner isLoading={isLoading}>
+      <Redirect to='/home' />
+    </LoadingSpinner>
+  ) : (
     <LoadingSpinner isLoading={isLoading}>
       <div className='login-div page-header'>
         <div className='filter' />
@@ -94,5 +102,6 @@ const SignIn = () => {
 };
 SignIn.propTypes = {
   isLoading: PropTypes.bool,
+  isAuthorized: PropTypes.bool,
 };
 export default SignIn;

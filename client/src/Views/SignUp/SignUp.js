@@ -14,7 +14,7 @@ import {
 
 import './SignUp.css';
 import { register } from '../../JS/actions/authActions';
-import LoadingSpinner from '../LoadingPage/LoadingSpinner';
+import LoadingSpinner from '../../components/LoadingPage/LoadingSpinner';
 
 const SignUpForm = () => {
   const [cred, setCred] = useState({

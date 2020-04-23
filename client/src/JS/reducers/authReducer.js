@@ -65,7 +65,7 @@ const authReducer = (state = initialState, { type, payload }) => {
     case AUTH_SUCCESS:
       return {
         ...state,
-        isLaoding: false,
+        isLoading: false,
         isAuth: true,
         user: payload,
       };

@@ -12,7 +12,6 @@ import {
 } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
 import './Signin.css';
 import LoadingSpinner from '../../components/LoadingPage/LoadingSpinner';
 import { logIn, isAuth } from '../../JS/actions/authActions';
@@ -40,16 +39,14 @@ const SignIn = () => {
       dispatch(logIn(cred));
     }
   };
+  const isAuthorized = useSelector((state) => state.authReducer.isAuth);
+  const isLoading = useSelector((state) => state.authReducer.isLoading);
   useEffect(() => {
     localStorage.getItem('token') && dispatch(isAuth());
-  }, []); //eslint-disable-line
-  const isLoading = useSelector((state) => state.authReducer.isLoading);
-  const isAuthorized = useSelector((state) => state.authReducer.isAuth);
+  }, [dispatch, isAuthorized]);
 
   return isAuthorized ? (
-    <LoadingSpinner isLoading={isLoading}>
-      <Redirect to='/home' />
-    </LoadingSpinner>
+    <Redirect to='/profile' />
   ) : (
     <LoadingSpinner isLoading={isLoading}>
       <div className='login-div page-header'>

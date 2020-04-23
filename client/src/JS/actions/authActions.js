@@ -65,7 +65,7 @@ export const isAuth = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: AUTH_FAIL,
-      payload: error.response.data.errors,
+      // payload: error.response.data.errors,
     });
   }
 };

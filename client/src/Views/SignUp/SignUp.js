@@ -11,7 +11,6 @@ import {
   Button,
   Alert,
 } from 'reactstrap';
-
 import './SignUp.css';
 import { register } from '../../JS/actions/authActions';
 import LoadingSpinner from '../../components/LoadingPage/LoadingSpinner';
